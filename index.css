@@ -1,5 +1,5 @@
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .progress_container {
@@ -50,7 +50,7 @@ label {
     }
 }
 
-#value-input {
+.value_input {
     width: 40px;
     height: 20px;
     border-radius: 20px;

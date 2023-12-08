@@ -1,25 +1,32 @@
-const progressCircleBarComponent = (element) => {
-    element.innerHTML =
+const progressCircleBarComponent = (targetElement) => {
+    const uuid = () => {
+        return (Math.random() + 1).toString(36).substring(7)
+    }
+    const circleId = uuid();
+    const valueInputId = uuid();
+    const animateCheckboxId = uuid();
+    const hideCheckboxId = uuid();
+    targetElement.innerHTML =
     `
     <div class="progress_container">
         <div class="progress_bar">
             <svg class="progress_circle__wrapper" width="120" height="120">
                 <circle  class="progress_circle__background" cx="60" cy="60" r="50"></circle>
-                <circle class="progress_circle" cx="60" cy="60" r="50"></circle>
+                <circle class="progress_circle" id="${circleId}" cx="60" cy="60" r="50"></circle>
             </svg>
         </div>
         <div class="progress_menu">
-            <label for="value-input">
-                <input type="number" id="value-input" value="100">
+            <label for="${valueInputId}">
+                <input class="value_input" type="number" id="${valueInputId}" value="100">
                 Value
             </label>
-            <label for="animate-checkbox" class="knob">
-                <input type="checkbox" id="animate-checkbox">
+            <label for="${animateCheckboxId}" class="knob">
+                <input type="checkbox" id="${animateCheckboxId}">
                 <i></i>
                 Animate
             </label>
-            <label for="hide-checkbox" class="knob">
-                <input type="checkbox" id="hide-checkbox">
+            <label for="${hideCheckboxId}" class="knob">
+                <input type="checkbox" id="${hideCheckboxId}">
                 <i></i>
                 Hide
             </label>
@@ -27,10 +34,10 @@ const progressCircleBarComponent = (element) => {
     </div>
     `;
 
-    const circle = document.querySelector('.progress_circle');
-    const valueInput = document.getElementById('value-input');
-    const animateCheckbox = document.getElementById('animate-checkbox');
-    const hideCheckbox = document.getElementById('hide-checkbox');
+    const circle = document.getElementById(circleId);
+    const valueInput = document.getElementById(valueInputId);
+    const animateCheckbox = document.getElementById(animateCheckboxId);
+    const hideCheckbox = document.getElementById(hideCheckboxId);
 
     const changeValueInput = () => {
         const { value } = valueInput;
@@ -73,7 +80,17 @@ const progressCircleBarComponent = (element) => {
     valueInput.addEventListener('input', changeValueInput);
     animateCheckbox.addEventListener('change', changeCheckboxAnimation);
     hideCheckbox.addEventListener('change', changeCheckboxHidden);
-    valueInput.removeEventListener('onmouseover', changeValueInput);
+
+    return () => {
+        targetElement.innerHTML = '';
+        valueInput.removeEventListener('input', changeValueInput);
+        animateCheckbox.removeEventListener('change', changeCheckboxAnimation);
+        hideCheckbox.removeEventListener('change', changeCheckboxHidden);
+    };
 }
-const progressBar = document.getElementById('progress-circle');
+const progressBar = document.getElementById('target-element');
 progressCircleBarComponent(progressBar);
+
+//заменить обращения по классам на id // 
+//заменить все id на уникальные //
+//поправить стили на class с id (бэм)
