@@ -1,11 +1,14 @@
 const progressCircleBarComponent = (targetElement) => {
+
     const uuid = () => {
         return (Math.random() + 1).toString(36).substring(7)
     }
+
     const circleId = uuid();
     const valueInputId = uuid();
     const animateCheckboxId = uuid();
     const hideCheckboxId = uuid();
+
     targetElement.innerHTML =
     `
     <div class="progress_container">
@@ -77,6 +80,7 @@ const progressCircleBarComponent = (targetElement) => {
             animateCheckbox.disabled = false;
         }
     }
+
     valueInput.addEventListener('input', changeValueInput);
     animateCheckbox.addEventListener('change', changeCheckboxAnimation);
     hideCheckbox.addEventListener('change', changeCheckboxHidden);
@@ -88,9 +92,6 @@ const progressCircleBarComponent = (targetElement) => {
         hideCheckbox.removeEventListener('change', changeCheckboxHidden);
     };
 }
+
 const progressBar = document.getElementById('target-element');
 progressCircleBarComponent(progressBar);
-
-//заменить обращения по классам на id // 
-//заменить все id на уникальные //
-//поправить стили на class с id (бэм)
