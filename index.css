@@ -1,0 +1,135 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.progress_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 321px) {
+    .progress_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+}
+
+.progress_bar {
+    padding: 25px;
+    width: 120px;
+    height: 120px;
+}
+
+.progress_circle__background {
+    fill: none;
+    stroke: #f5f5f5;
+    stroke-width: 9;
+}
+
+.progress_circle {
+    fill: none;
+    stroke: #256ce8ed;
+    stroke-width: 9;
+    stroke-linecap:butt;
+    transform: rotate(-90deg);
+    stroke-dasharray: 314;
+    transform-origin: center;
+    
+}
+
+.progress_menu {
+    padding: 25px;
+}
+
+label {
+    &:nth-child(2) {
+        margin: 10px 0;
+    }
+}
+
+#value-input {
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.animate {
+    animation: move 2s infinite linear;
+}
+
+@keyframes move {
+    0% {
+      transform: rotate(-90deg);
+    }
+    100% {
+      transform: rotate(270deg);
+    }
+}
+
+.switcher {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.switcher i {
+    position: relative;
+    margin-right: 15px;
+    width: 46px;
+    height: 26px;
+    background-color: #e6e6e6;
+    border-radius: 23px;
+    transition: all 0.3s linear;
+}
+
+.switcher i::before {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+    transition: all 0.3s;
+}
+.switcher input {
+    display: none; 
+}
+.switcher i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    transform: translate3d(2px, 2px, 0);
+    transition: all 0.2s ease-in;
+}
+.switcher:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+}
+.switcher:active input:checked + i::after {
+    transform: translate3d(10px, 2px, 0); 
+}
+.switcher input:checked + i {
+    background-color: #256ce8ed; 
+}
+.switcher input:checked + i::before {
+    transform: translate3d(12px, 2px, 0) scale3d(0, 0, 100); 
+}
+.switcher input:checked + i::after {
+    transform: translate3d(22px, 2px, 0); 
+}
