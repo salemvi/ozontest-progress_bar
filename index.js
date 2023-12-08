@@ -13,12 +13,12 @@ const progressCircleBarComponent = (element) => {
                 <input type="number" id="value-input" value="100">
                 Value
             </label>
-            <label for="animate-checkbox" class="switcher">
+            <label for="animate-checkbox" class="knob">
                 <input type="checkbox" id="animate-checkbox">
                 <i></i>
                 Animate
             </label>
-            <label for="hide-checkbox" class="switcher">
+            <label for="hide-checkbox" class="knob">
                 <input type="checkbox" id="hide-checkbox">
                 <i></i>
                 Hide
@@ -65,7 +65,7 @@ const progressCircleBarComponent = (element) => {
             animateCheckbox.checked = false
             valueInput.disabled = true;
         } else {
-            document.querySelector('.progress_circle__wrapper').style.display = 'block';
+            document.querySelector('.progress_circle__wrapper').style.display = 'flex';
             valueInput.disabled = false;
             animateCheckbox.disabled = false;
         }

@@ -75,14 +75,14 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.switcher {
+.knob {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     display: flex;
     align-items: center;
 }
 
-.switcher i {
+.knob i {
     position: relative;
     margin-right: 15px;
     width: 46px;
@@ -92,7 +92,7 @@ input::-webkit-inner-spin-button {
     transition: all 0.3s linear;
 }
 
-.switcher i::before {
+.knob i::before {
     content: "";
     position: absolute;
     width: 42px;
@@ -102,10 +102,10 @@ input::-webkit-inner-spin-button {
     transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
     transition: all 0.3s;
 }
-.switcher input {
+.knob input {
     display: none; 
 }
-.switcher i::after {
+.knob i::after {
     content: "";
     position: absolute;
     left: 0;
@@ -117,19 +117,19 @@ input::-webkit-inner-spin-button {
     transform: translate3d(2px, 2px, 0);
     transition: all 0.2s ease-in;
 }
-.switcher:active i::after {
+.knob:active i::after {
     width: 28px;
     transform: translate3d(2px, 2px, 0);
 }
-.switcher:active input:checked + i::after {
+.knob:active input:checked + i::after {
     transform: translate3d(10px, 2px, 0); 
 }
-.switcher input:checked + i {
+.knob input:checked + i {
     background-color: #256ce8ed; 
 }
-.switcher input:checked + i::before {
+.knob input:checked + i::before {
     transform: translate3d(12px, 2px, 0) scale3d(0, 0, 100); 
 }
-.switcher input:checked + i::after {
+.knob input:checked + i::after {
     transform: translate3d(22px, 2px, 0); 
 }
