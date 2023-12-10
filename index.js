@@ -5,15 +5,16 @@ const progressCircleBarComponent = (targetElement) => {
     }
 
     const circleId = uuid();
+    const progressSvgId = uuid();
     const valueInputId = uuid();
     const animateCheckboxId = uuid();
     const hideCheckboxId = uuid();
-
     targetElement.innerHTML =
+    // отображение checkbox: <i></i>
     `
     <div class="progress_container">
         <div class="progress_bar">
-            <svg class="progress_circle__wrapper" width="120" height="120">
+            <svg class="progress_circle__wrapper" id="${progressSvgId}" width="120" height="120">
                 <circle  class="progress_circle__background" cx="60" cy="60" r="50"></circle>
                 <circle class="progress_circle" id="${circleId}" cx="60" cy="60" r="50"></circle>
             </svg>
@@ -41,6 +42,7 @@ const progressCircleBarComponent = (targetElement) => {
     const valueInput = document.getElementById(valueInputId);
     const animateCheckbox = document.getElementById(animateCheckboxId);
     const hideCheckbox = document.getElementById(hideCheckboxId);
+    const progressSvg = document.getElementById(progressSvgId)
 
     const changeValueInput = () => {
         const { value } = valueInput;
@@ -69,13 +71,13 @@ const progressCircleBarComponent = (targetElement) => {
     const changeCheckboxHidden = () => {
         const isHidden = hideCheckbox.checked;
         if (isHidden) {
-            document.querySelector('.progress_circle__wrapper').style.display = 'none';
+            progressSvg.classList.add('hide')
             animateCheckbox.disabled = true;
             circle.classList.remove('animate');
             animateCheckbox.checked = false
             valueInput.disabled = true;
         } else {
-            document.querySelector('.progress_circle__wrapper').style.display = 'flex';
+            progressSvg.classList.remove('hide')
             valueInput.disabled = false;
             animateCheckbox.disabled = false;
         }
@@ -92,6 +94,6 @@ const progressCircleBarComponent = (targetElement) => {
         hideCheckbox.removeEventListener('change', changeCheckboxHidden);
     };
 }
-
 const progressBar = document.getElementById('target-element');
 progressCircleBarComponent(progressBar);
+
