@@ -45,6 +45,7 @@ body {
 }
 
 label {
+    display: block;
     &:nth-child(2) {
         margin: 10px 0;
     }
